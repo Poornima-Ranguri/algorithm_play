@@ -30,8 +30,7 @@ def find_index_closest_to_mean(the_list):
     return index+1, middlest
 
 def quicksort(the_list):
-    '''Quicksort: choose pivot and divide into elements > or <= pivot; call
-    recursively.'''
+    '''Quicksort: choose pivot, divide as > or <= pivot; call recursively.'''
     # Recursion returns
     if not the_list:
         return the_list
