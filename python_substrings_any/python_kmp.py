@@ -1,27 +1,38 @@
 #! /usr/bin/env python
 # python_kmp.py
 # David Prager Branner
-# 20141117
+# 20141120
 
-def find(s, substring):
-    # build table of shift amounts
-    length = len(substring)
-    shift = 1
-    shift_table = [shift for _ in range(length + 1)]
-    print(shift_table)
-    for i in range(length):
-        while shift <= i and substring[i] != substring[i - shift]:
-            shift += shift_table[i - shift]
-        shift_table[i + 1] = shift
-        print(shift_table)
-    index_start = 0
-    len_match = 0
-    for char in s:
-        while len_match == length or \
-              len_match >= 0 and substring[len_match] != char:
-            index_start += shift_table[len_match]
-            len_match -= shift_table[len_match]
-        len_match += 1
-        if len_match == length:
-            yield index_start
+"""Implement the Knuth-Morris-Pratt subsequence-matching algorithm."""
+
+def fill_skip_ahead_array(sequence):
+    """Implement COMPUTE-PREFIX-FUNCTION(P) of Cormen et al., Ch. 32."""
+    skip_ahead_array = [0]
+    prefix_length = 0
+    for cursor, element in enumerate(sequence[1:]):
+        while prefix_length and sequence[prefix_length] != element:
+            prefix_length = skip_ahead_array[prefix_length - 1]
+        if sequence[prefix_length] == element:
+            prefix_length += 1
+        skip_ahead_array.append(prefix_length)
+    return skip_ahead_array
+
+def match(sequence, subsequence):
+    """Implement KMP-MATCHER(T, P) of Cormen et al., Ch. 32, as generator."""
+    length = len(subsequence)
+    if not length:
+        return None
+    skip_ahead_array = fill_skip_ahead_array(subsequence)
+    chars_matched = 0
+    for cursor, element in enumerate(sequence):
+        print(chars_matched,)
+        while chars_matched and subsequence[chars_matched] != element:
+            chars_matched = skip_ahead_array[chars_matched - 1]
+        print(chars_matched,)
+        if subsequence[chars_matched] == element:
+            chars_matched += 1
+        print(chars_matched)
+        if chars_matched == length:
+            chars_matched = skip_ahead_array[chars_matched - 1]
+            yield cursor - length + 1
 
