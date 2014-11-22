@@ -65,19 +65,19 @@ def test_fill_skip_ahead_array_06():
 
 def test_fill_skip_ahead_array_07():
     """Test random subsequence against failTable results."""
-    for i in range(100):
+    for _ in range(100):
         rand_str = random_string()
         assert KMP.fill_skip_ahead_array(rand_str) == failTable(rand_str)[1:]
 
 def test_fill_skip_ahead_array_08():
     """Test random subsequence against failTable results."""
-    for i in range(100):
+    for _ in range(100):
         rand_str = random_string(10, 7)
         assert KMP.fill_skip_ahead_array(rand_str) == failTable(rand_str)[1:]
 
 def test_fill_skip_ahead_array_09():
     """Test random subsequence against failTable results."""
-    for i in range(100):
+    for _ in range(100):
         rand_str = random_string(20, 40)
         assert KMP.fill_skip_ahead_array(rand_str) == failTable(rand_str)[1:]
 
