@@ -10,7 +10,7 @@
 
  2. Use of Keith Schwarz's different implementation of COMPUTE-PREFIX-FUNCTION to test `fill_skip_ahead_array`.
 
- 3. Problem testing for all matches.
+ 3. Problem testing for all matches, because `re.finditer` ignores overlapping matches. Example:
 
         In [1]: seq = '1010101010101010101010101010101010'
         
@@ -22,7 +22,7 @@
         In [4]: [i.start() for i in re.finditer(subseq, seq)]
         Out[4]: [1, 9, 17, 25]
 
-   Solution: use look-ahead:
+   Solution: Use look-ahead to force return of even overlapping matches:
 
         In [5]: [i.start() for i in re.finditer('(?='+subseq+')', seq)]
         Out[5]: [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27]
