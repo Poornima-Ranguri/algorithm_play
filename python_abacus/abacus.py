@@ -32,16 +32,13 @@ def abacus(first=['3'], second=['5']):
     c = 0
     sums = []
     for a, b in zip(first, second):
-        print('a: {}; b: {}; c: {}'.format(a, b, c))
         # Convert string-elements to ints.
         a, b = int(a), int(b)
         s = a + b + c
         c = 1 if s > 9 else 0
         sums.append(s%10)
     sums = sums[::-1]
-    print('\nsums before last action: {}'.format(sums))
     sums = ([1] + sums) if c else sums
-    print('\nsums after last action: {}'.format(sums))
 
 
     return [str(i) for i in sums]
