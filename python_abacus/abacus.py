@@ -1,4 +1,5 @@
 # abacus.py
+# This solution by Leslie Klein as an interview practice problem on 20160421.
 
 """Model addition on an abacus.
 
