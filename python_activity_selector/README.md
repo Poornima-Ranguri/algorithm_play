@@ -34,6 +34,6 @@ There is a second of the code, named `activity_selector_typing.py`, which uses P
 mypy activity_selector_typing.py
 ```
 
-I ran into problems when switching back and forth between `list` and `deque` in the context of `typing`. So for the typed version of the program, I have used lists along, and am simply risking the added time complexity with `list.pop(0)` instead of `deque.popleft()` as in the untyped version.
+I ran into problems when switching back and forth between `list` and `deque` in the context of `typing`. So for the typed version of the program, I have used lists alone, and am simply risking the added time complexity with `list.pop(0)` instead of `deque.popleft()` as in the untyped version.
 
 [end]
